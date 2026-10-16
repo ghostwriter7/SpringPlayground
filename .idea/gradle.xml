@@ -10,10 +10,6 @@
             <option value="$PROJECT_DIR$/Beans" />
           </set>
         </option>
-        <option name="myGradleHome" value="" />
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/Beans" />
       </GradleProjectSettings>
     </option>
   </component>
