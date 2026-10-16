@@ -3,19 +3,28 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7" apply false
 }
 
-//group = "com.rozplochowski"
-//version = "1.0-SNAPSHOT"
-//
-//repositories {
-//    mavenCentral()
-//}
-//
-//dependencies {
-//    testImplementation(platform("org.junit:junit-bom:6.0.0"))
-//    testImplementation("org.junit.jupiter:junit-jupiter")
-//    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-//}
-//
-//tasks.test {
-//    useJUnitPlatform()
-//}
+allprojects {
+    group = "com.rozplochowski"
+    version = "0.0.1-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply {
+        plugin("java")
+    }
+
+    extensions.configure<JavaPluginExtension> {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(26)
+        }
+    }
+
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
+
+}
