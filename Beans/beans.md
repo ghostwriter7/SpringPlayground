@@ -18,3 +18,16 @@
   * `includeFilters` and `excludeFilters`
   * `@ComponentScan.Filter`
   * `FilterType` supports `ANNOTATION`, `ASSIGNABLE_TYPE`, `CUSTOM`, `REGEX`, `ASPECTJ`
+
+## Autowiring
+
+* constructor injection
+* `@Autowired` - tests
+  * can be placed over an arbitrary method
+* setter injection
+
+## Optional Beans
+
+* `@Autowired(required = false)`
+* `Optional<Bean>` - makes the injection lazy
+* `ObjectProvider`
