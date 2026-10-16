@@ -1,13 +1,23 @@
 package com.rozplochowski.beans;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
 public class BeansApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BeansApplication.class, args);
+     static void main(String[] args) {
+
+         try (var ctx = new AnnotationConfigApplicationContext(SequenceConfiguration.class)) {
+             var sequenceBeanByClass = ctx.getBean(Sequence.class);
+             var sequenceBeanByName = (Sequence) ctx.getBean("sequence");
+             var sequenceBeanByName2 = ctx.getBean("sequence", Sequence.class);
+
+             IO.println(sequenceBeanByClass.next());
+             IO.println(sequenceBeanByName.next());
+             IO.println(sequenceBeanByName2.next());
+
+             var sequenceRepository = ctx.getBean(SequenceRepository.class);
+             IO.println(sequenceRepository.next());
+         }
     }
 
 }
