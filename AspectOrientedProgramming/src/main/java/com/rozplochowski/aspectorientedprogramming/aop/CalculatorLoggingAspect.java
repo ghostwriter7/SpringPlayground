@@ -14,8 +14,19 @@ import java.util.Arrays;
 @Slf4j
 public class CalculatorLoggingAspect {
 
+    @Pointcut("@within(com.rozplochowski.aspectorientedprogramming.aop.LoggingRequired)")
+    private void loggingRequiredWithin() {}
+
+    @Pointcut("within(com.rozplochowski.aspectorientedprogramming.service.ArithmeticCalculator+) || within(com.rozplochowski.aspectorientedprogramming.service.UnitCalculator+)")
+    private void pointcutForWithinIntefaces() {}
+
     @Pointcut("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
     private void calculatorServiceMethods() {}
+
+    @Before("@annotation(com.rozplochowski.aspectorientedprogramming.aop.LoggingRequired)")
+    public void annotationDemo(JoinPoint joinPoint) {
+        log.info("Triggered due to LoggingRequired annotation ({})", joinPoint.getSignature().getName());
+    }
 
     @Before("calculatorServiceMethods()")
     public void logBefore(JoinPoint joinPoint) {
