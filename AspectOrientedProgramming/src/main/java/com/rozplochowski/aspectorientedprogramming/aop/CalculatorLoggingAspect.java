@@ -23,6 +23,9 @@ public class CalculatorLoggingAspect {
     @Pointcut("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
     private void calculatorServiceMethods() {}
 
+    @Pointcut(value = "execution(* *.*(..)) && target(target) && args(a, b)", argNames = "target,a,b")
+    private void pointcutForTargetAndArgs(Object target, double a, double b) {}
+
     @Before("@annotation(com.rozplochowski.aspectorientedprogramming.aop.LoggingRequired)")
     public void annotationDemo(JoinPoint joinPoint) {
         log.info("Triggered due to LoggingRequired annotation ({})", joinPoint.getSignature().getName());

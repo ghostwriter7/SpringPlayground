@@ -18,3 +18,8 @@
   * `within(..)`
   * `@annotation(..)`
   * can combine with `&&`, `||`, or `!`
+* Introduction - to add new behaviour to existing classes, multiple-inheritance like
+  * `@DeclareParents(..)`
+  * `value` - the type to be amended
+  * `defaultImpl` - the implementation class to be used
+  * the return type of the method defines the type of the introduced behaviour
