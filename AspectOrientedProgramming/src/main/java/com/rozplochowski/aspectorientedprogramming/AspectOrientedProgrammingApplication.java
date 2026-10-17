@@ -1,13 +1,16 @@
 package com.rozplochowski.aspectorientedprogramming;
 
+import com.rozplochowski.aspectorientedprogramming.config.Config;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
 public class AspectOrientedProgrammingApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(AspectOrientedProgrammingApplication.class, args);
+    static void main(String[] args) {
+        try (var ctx = new AnnotationConfigApplicationContext(Config.class)) {
+
+        }
     }
 
 }

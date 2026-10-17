@@ -40,3 +40,6 @@ This module covers the creation of Beans, their lifecycle, autowiring and retrie
 * Interaction with IoC
   * through `*Aware` interfaces
   * `Environment`, `ApplicationContext`, `ResourceLoader` injection
+
+## Aspect Oriented Programming
+
