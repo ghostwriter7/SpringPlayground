@@ -11,11 +11,9 @@
             <option value="$PROJECT_DIR$/AppEvents" />
             <option value="$PROJECT_DIR$/AspectOrientedProgramming" />
             <option value="$PROJECT_DIR$/Beans" />
+            <option value="$PROJECT_DIR$/JDBC" />
           </set>
         </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/AppEvents" />
       </GradleProjectSettings>
     </option>
   </component>
