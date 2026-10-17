@@ -62,3 +62,10 @@ To access programmatically, check:
 * `@Bean(destroyMethod = "destroy", initMethod = "init")`
 * `@Lazy` - to delay bean initialization until it is requested
 * `@DependsOn` - to control bean initialization order
+
+## Processing
+
+* `BeanFactoryPostProcessor` - to modify the bean factory before bean creation
+* implement `BeanPostProcessor`
+  * allows for intercepting bean creation before initialization and after (`@PostConstruct`/`initMethod`)
+* `AbstractFactoryBean<T>` - to define custom bean creation logic

@@ -1,11 +1,9 @@
 package com.rozplochowski.beans.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 
 @Configuration
+@Profile("prod")
 class NumbersConfiguration {
 
     @Bean

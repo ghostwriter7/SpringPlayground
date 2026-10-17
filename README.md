@@ -26,3 +26,14 @@ This module covers the creation of Beans, their lifecycle, autowiring and retrie
   * `@Value("${key:default}")` - for properties
   * `Resource` and `@Value("classpath:file.txt")` for resources
   * `ClassPathResource` and `PropertiesLoaderUtils` for programmatic access
+* Lifecycle
+  * `@PostConstruct` and `@PreDestroy`
+  * `@Bean(destroyMethod = "destroy", initMethod = "init")`
+  * `@Lazy`
+  * `@DependsOn`
+* Processing
+  * `BeanPostProcessor`
+  * `AbstractFactoryBean<T>`
+* Profiles
+  * `@Profile`
+  * `ctx.getEnvironment().setActiveProfiles(..)`
