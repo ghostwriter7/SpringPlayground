@@ -14,8 +14,10 @@ import java.util.Arrays;
 @Slf4j
 public class CalculatorLoggingAspect {
 
+    @Pointcut("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
+    private void calculatorServiceMethods() {}
 
-    @Before("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
+    @Before("calculatorServiceMethods()")
     public void logBefore(JoinPoint joinPoint) {
         var name = joinPoint.getSignature().getName();
 
@@ -28,14 +30,14 @@ public class CalculatorLoggingAspect {
         log.info("The method {} begins with arguments {}", name, args);
     }
 
-    @After("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
+    @After("calculatorServiceMethods()")
     public void logAfter(JoinPoint joinPoint) {
         var name = joinPoint.getSignature().getName();
         log.info("The method {} ends", name);
     }
 
     @AfterReturning(
-            pointcut = "execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))",
+            pointcut = "calculatorServiceMethods()",
             returning = "result"
     )
     public void afterReturning(JoinPoint joinPoint, Double result) {
@@ -44,7 +46,7 @@ public class CalculatorLoggingAspect {
     }
 
     @AfterThrowing(
-            pointcut = "execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))",
+            pointcut = "calculatorServiceMethods()",
             throwing = "ex"
     )
     public void afterThrowing(JoinPoint joinPoint, Throwable ex) {
@@ -52,7 +54,7 @@ public class CalculatorLoggingAspect {
         log.error("The method {} throws {}", name, ex.getMessage());
     }
 
-    @Around("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
+    @Around("calculatorServiceMethods()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         var name = joinPoint.getSignature().getName();
         var args = Arrays.toString(joinPoint.getArgs());
