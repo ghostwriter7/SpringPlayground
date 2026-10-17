@@ -8,10 +8,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AppEvents" />
             <option value="$PROJECT_DIR$/AspectOrientedProgramming" />
             <option value="$PROJECT_DIR$/Beans" />
           </set>
         </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/AppEvents" />
       </GradleProjectSettings>
     </option>
   </component>
