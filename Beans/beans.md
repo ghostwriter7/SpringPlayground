@@ -43,3 +43,15 @@
 * session - per HTTP session; only for web apps
 * websocket - per WebSocket session
 * application - similar to singleton, registered in `ServletContext`
+
+## Loading Properties
+
+* `@PropertySource("classpath:file.properties")`
+* `@Value("${something:default}")`
+* `PropertySourcesPlaceholderConfigurer` must be defined in the container
+* `@Value("classpath:file.txt")` - for loading `Resource`
+
+To access programmatically, check:
+* `ClassPathResource`
+* `PropertiesLoaderUtils`
+* `FileSystemResource` or `URLResource` are additional options

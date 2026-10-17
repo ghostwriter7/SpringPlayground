@@ -2,6 +2,7 @@ package com.rozplochowski.beans;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,8 @@ import org.springframework.stereotype.Repository;
 @ComponentScan(includeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Repository.class),
 }, excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OutOfScanningScopeConfiguration.class)
+        @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OutOfScanningScopeConfiguration.class),
+        @Filter(type = FilterType.REGEX, pattern = "com.rozplochowski.beans.properties.*")
 })
 class SequenceConfiguration {
 

@@ -3,10 +3,15 @@ package com.rozplochowski.beans;
 import com.rozplochowski.beans.service.NumberService;
 import com.rozplochowski.beans.service.StringService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.ClassRelativeResourceLoader;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
+
+import java.io.IOException;
 
 public class BeansApplication {
 
-     static void main(String[] args) {
+     static void main(String[] args) throws IOException {
 
          try (var ctx = new AnnotationConfigApplicationContext(SequenceConfiguration.class)) {
              var sequenceBeanByClass = ctx.getBean(Sequence.class);
@@ -40,6 +45,9 @@ public class BeansApplication {
                      randomNumber, randomNumber2, randomNumber3
              ));
 
+             var resource = new ClassPathResource("aboutme.properties");
+             var props = PropertiesLoaderUtils.loadProperties(resource);
+             IO.println("Good bye " + props.getProperty("user.firstname"));
          }
     }
 
