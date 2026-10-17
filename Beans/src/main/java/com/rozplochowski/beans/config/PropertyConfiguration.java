@@ -27,7 +27,7 @@ public class PropertyConfiguration {
     @Value("classpath:banner.txt")
     private Resource banner;
 
-    @Bean
+    @Bean(destroyMethod = "destroy")
     public BannerLoader bannerLoader() {
         return new BannerLoader(banner);
     }

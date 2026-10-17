@@ -20,4 +20,8 @@ public class BannerLoader {
             lines.forEachOrdered(IO::println);
         }
     }
+
+    public void destroy() {
+        IO.println("Banner destroyed");
+    }
 }

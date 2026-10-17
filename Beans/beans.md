@@ -55,3 +55,10 @@ To access programmatically, check:
 * `ClassPathResource`
 * `PropertiesLoaderUtils`
 * `FileSystemResource` or `URLResource` are additional options
+
+## Lifecycle
+
+* `@PostConstruct` and `@PreDestroy` methods
+* `@Bean(destroyMethod = "destroy", initMethod = "init")`
+* `@Lazy` - to delay bean initialization until it is requested
+* `@DependsOn` - to control bean initialization order

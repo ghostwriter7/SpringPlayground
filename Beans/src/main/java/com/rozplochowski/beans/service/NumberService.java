@@ -1,17 +1,20 @@
 package com.rozplochowski.beans.service;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Lazy
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class NumberService {
@@ -55,4 +58,8 @@ public class NumberService {
         IO.println(numbersByName);
     }
 
+    @PreDestroy
+    public void destroy() {
+        IO.println("NumberService destroyed");
+    }
 }

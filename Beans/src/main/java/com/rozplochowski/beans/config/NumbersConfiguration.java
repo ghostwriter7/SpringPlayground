@@ -2,6 +2,7 @@ package com.rozplochowski.beans.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
@@ -14,6 +15,7 @@ class NumbersConfiguration {
     }
 
     @Bean
+    @DependsOn("meaningOfLife")
     Double luckyNumber(Integer meaningOfLife) {
         return meaningOfLife / 2.0;
     }
