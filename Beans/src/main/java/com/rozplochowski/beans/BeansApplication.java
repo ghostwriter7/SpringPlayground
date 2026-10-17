@@ -4,10 +4,10 @@ import com.rozplochowski.beans.product.DiscountFactoryBean;
 import com.rozplochowski.beans.service.NumberService;
 import com.rozplochowski.beans.service.StringService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+
+import java.time.LocalDateTime;
 
 public class BeansApplication {
 
@@ -58,7 +58,27 @@ public class BeansApplication {
             var discountFactoryBean = ctx.getBean(DiscountFactoryBean.class);
             IO.println("Configured as not a singleton, so instances are not the same object");
             IO.println(discountFactoryBean.getObject() == discountFactoryBean.getObject());
+
+            createBeansFunctionally(ctx);
         }
+    }
+
+    private static void createBeansFunctionally(AnnotationConfigApplicationContext ctx) {
+        ctx.registerBean("birthday", LocalDateTime.class,
+                () -> LocalDateTime.of(1994, 7, 7, 10, 0, 0),
+                customizer -> {
+                    customizer.setPrimary(true);
+                });
+
+        ctx.registerBean("namePlusBirthday", String.class, () -> {
+            var name = ctx.getBean("name", String.class);
+            var birthday = ctx.getBeanProvider(LocalDateTime.class).getIfUnique();
+            return name + " " + birthday;
+        });
+
+        IO.println("Birthday -> " + ctx.getBean("birthday", LocalDateTime.class));
+
+        IO.println(ctx.getBean("namePlusBirthday"));
     }
 
 }

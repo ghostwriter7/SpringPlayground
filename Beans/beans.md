@@ -7,10 +7,16 @@
 * bean factory (`BeanFactory`)
 * application context (`ApplicationContext`)
   * `AnnotationConfigApplicationContext` - instantiate with `@Configuration` classes
-  
+
 ## Bean retrieval
 
 * `ctx.getBean(..)` - by class, name, class + name
+
+## Creation
+
+* `@Bean`
+* `@Component/Service/Repository/Controller`
+* Programmatic with `ctx.registerBean(...)`
 
 ## Component scanning
 
