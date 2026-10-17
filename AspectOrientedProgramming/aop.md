@@ -23,3 +23,7 @@
   * `value` - the type to be amended
   * `defaultImpl` - the implementation class to be used
   * the return type of the method defines the type of the introduced behaviour
+* State Introduction 
+  * Use `@DeclareParents` to introduce a new interface for state storage
+  * Combine it with any Advice to manipulate the state
+  * Use `this` to refer to the state, as it is only implemented by the proxy object, not the actual target

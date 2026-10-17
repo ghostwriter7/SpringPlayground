@@ -1,10 +1,7 @@
 package com.rozplochowski.aspectorientedprogramming;
 
 import com.rozplochowski.aspectorientedprogramming.config.Config;
-import com.rozplochowski.aspectorientedprogramming.service.ArithmeticCalculator;
-import com.rozplochowski.aspectorientedprogramming.service.MaxCalculator;
-import com.rozplochowski.aspectorientedprogramming.service.MinCalculator;
-import com.rozplochowski.aspectorientedprogramming.service.UnitCalculator;
+import com.rozplochowski.aspectorientedprogramming.service.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class AspectOrientedProgrammingApplication {
@@ -24,7 +21,10 @@ public class AspectOrientedProgrammingApplication {
             ((MinCalculator) calculator).min(10, 5);
             ((MaxCalculator) calculator).max(10, 5);
 
-            calculator.divide(10, 0);
+            IO.println("Arithmetic Calculator has been used %d times".formatted(((Counter) calculator).getValue()));
+            IO.println("Unit Calculator has been used %d times".formatted(((Counter) unitCalculator).getValue()));
+
+//            calculator.divide(10, 0);
         }
     }
 
