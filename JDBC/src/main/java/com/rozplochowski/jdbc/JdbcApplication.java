@@ -1,6 +1,7 @@
 package com.rozplochowski.jdbc;
 
 import com.rozplochowski.jdbc.model.Exercise;
+import com.rozplochowski.jdbc.repository.ExerciseDao;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ public class JdbcApplication implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(JdbcApplication.class);
 
-    private final JdbcTemplate jdbcTemplate;
+    private final ExerciseDao exerciseDao;
 
     static void main(String[] args) {
         SpringApplication.run(JdbcApplication.class, args);
@@ -27,15 +28,31 @@ public class JdbcApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<Exercise> exercises = jdbcTemplate.query("select id, name from exercise", (rs, rowNumber) -> {
-            var name = rs.getString("name");
-            var id = rs.getLong("id");
-            var exercise = new Exercise();
-            exercise.setName(name);
-            exercise.setId(id);
-            return exercise;
-        });
+        List<Exercise> exercises = exerciseDao.findAll();
 
-        logger.info("Exercises: {}", exercises);
+        logger.info("Existing Exercises: {}", exercises);
+
+        var running = exerciseDao.save(new Exercise("Running"));
+
+        logger.info("Saved Exercise: {}", running);
+
+        var runningFromDb = exerciseDao.findById(running.getId());
+
+        logger.info("Retrieved Exercise: {}", runningFromDb);
+
+        runningFromDb.setName("Sprinting");
+        exerciseDao.update(runningFromDb);
+
+        logger.info("Exercises: {}", exerciseDao.findAll());
+
+        var batch = List.of(
+                new Exercise("Chin-Ups"),
+                new Exercise("One-Arm Push-Ups"),
+                new Exercise("Climbing")
+        );
+
+        exerciseDao.save(batch);
+
+        logger.info("Exercises: {}", exerciseDao.findAll());
     }
 }

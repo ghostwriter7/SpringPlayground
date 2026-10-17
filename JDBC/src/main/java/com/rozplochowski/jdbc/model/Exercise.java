@@ -1,5 +1,10 @@
 package com.rozplochowski.jdbc.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Exercise {
     private String name;
     private Long id;
@@ -12,19 +17,12 @@ public class Exercise {
                 '}';
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Exercise(String name) {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public Exercise(String name, Long id) {
+        this.name = name;
         this.id = id;
     }
 }
