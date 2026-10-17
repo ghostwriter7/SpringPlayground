@@ -18,6 +18,7 @@
   * `includeFilters` and `excludeFilters`
   * `@ComponentScan.Filter`
   * `FilterType` supports `ANNOTATION`, `ASSIGNABLE_TYPE`, `CUSTOM`, `REGEX`, `ASPECTJ`
+* `@Import` - for importing other configuration classes, if they are not discovered automatically
 
 ## Autowiring
 
@@ -25,6 +26,7 @@
 * `@Autowired` - tests
   * can be placed over an arbitrary method
 * setter injection
+* `@Resource` and `@Inject` can be used (Java standards) alternatively
 
 ## Optional Beans
 

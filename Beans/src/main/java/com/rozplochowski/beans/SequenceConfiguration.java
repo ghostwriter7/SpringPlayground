@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Configuration
 @ComponentScan(includeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Repository.class)
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Repository.class),
+}, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OutOfScanningScopeConfiguration.class)
 })
 class SequenceConfiguration {
 

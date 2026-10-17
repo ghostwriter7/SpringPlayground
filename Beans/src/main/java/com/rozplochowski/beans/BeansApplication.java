@@ -1,6 +1,7 @@
 package com.rozplochowski.beans;
 
 import com.rozplochowski.beans.service.NumberService;
+import com.rozplochowski.beans.service.StringService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class BeansApplication {
@@ -28,6 +29,8 @@ public class BeansApplication {
              var numberService = ctx.getBean(NumberService.class);
              numberService.printNumbers();
              numberService.printNumbersIndex();
+
+             ctx.getBean(StringService.class).introduce();
          }
     }
 

@@ -22,4 +22,7 @@ class NumbersConfiguration {
     Short shortNumber() {
         return 123;
     }
+
+    @Bean
+    Integer age() { return 33; }
 }
