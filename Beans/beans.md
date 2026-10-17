@@ -69,3 +69,7 @@ To access programmatically, check:
 * implement `BeanPostProcessor`
   * allows for intercepting bean creation before initialization and after (`@PostConstruct`/`initMethod`)
 * `AbstractFactoryBean<T>` - to define custom bean creation logic
+
+## Interaction with the IoC container
+
+* various *Aware interfaces exist, e.g. `EnvironmentAware` or `ApplicationStartupAware`

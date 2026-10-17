@@ -8,3 +8,4 @@ pluginManagement {
 rootProject.name = "SpringPlayground"
 
 include("Beans")
+include("AspectOrientedProgramming")

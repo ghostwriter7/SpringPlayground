@@ -4,7 +4,9 @@ import com.rozplochowski.beans.product.DiscountFactoryBean;
 import com.rozplochowski.beans.service.NumberService;
 import com.rozplochowski.beans.service.StringService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 public class BeansApplication {
