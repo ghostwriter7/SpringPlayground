@@ -54,5 +54,7 @@ public class JdbcApplication implements CommandLineRunner {
         exerciseDao.save(batch);
 
         logger.info("Exercises: {}", exerciseDao.findAll());
+
+        logger.info("Exercises count is {}", exerciseDao.countAll());
     }
 }

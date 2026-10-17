@@ -15,4 +15,6 @@ public interface ExerciseDao {
     Exercise save(Exercise exercise);
 
     List<Exercise> save(List<Exercise> exercises);
+
+    int countAll();
 }

@@ -4,6 +4,7 @@ import com.rozplochowski.jdbc.model.Exercise;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -16,11 +17,18 @@ import java.util.List;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class ExerciseDaoImpl implements ExerciseDao {
     private final JdbcTemplate jdbcTemplate;
-    private RowMapper<Exercise> exerciseRowMapper = (ResultSet rs, int rowNum) -> {
-        var name = rs.getString("name");
-        var id = rs.getLong("id");
-        return new Exercise(name, id);
-    };
+//    private final RowMapper<Exercise> exerciseRowMapper = (ResultSet rs, int rowNum) -> {
+//        var name = rs.getString("name");
+//        var id = rs.getLong("id");
+//        return new Exercise(name, id);
+//    };
+    private final RowMapper<Exercise> exerciseRowMapper = BeanPropertyRowMapper.newInstance(Exercise.class);
+
+
+    @Override
+    public int countAll() {
+        return jdbcTemplate.queryForObject("select count(*) from exercise", Integer.class);
+    }
 
     @Override
     public List<Exercise> findAll() {
@@ -29,6 +37,16 @@ class ExerciseDaoImpl implements ExerciseDao {
 
     @Override
     public Exercise findById(Long id) {
+//        var exercise = new Exercise();
+//        jdbcTemplate.query(pss -> {
+//            var ps = pss.prepareStatement("select * from exercise where id = ?");
+//            ps.setLong(1, id);
+//            return ps;
+//        }, rs -> {
+//            exercise.setName(rs.getString("name"));
+//            exercise.setId(rs.getLong("id"));
+//        });
+
         return jdbcTemplate.queryForObject("select * from exercise where id = ?", exerciseRowMapper, id);
     }
 
