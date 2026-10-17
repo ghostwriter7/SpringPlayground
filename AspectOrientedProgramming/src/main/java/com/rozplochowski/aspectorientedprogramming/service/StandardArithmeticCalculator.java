@@ -7,21 +7,21 @@ class StandardArithmeticCalculator implements ArithmeticCalculator {
     @Override
     public double add(double a, double b) {
         var result = a + b;
-        IO.println("%f + %f = %f".formatted(a, b, result));
+        IO.println("%.2f + %.2f = %.2f".formatted(a, b, result));
         return result;
     }
 
     @Override
     public double subtract(double a, double b) {
         var result = a - b;
-        IO.println("%f - %f = %f".formatted(a, b, result));
+        IO.println("%.2f - %.2f = %.2f".formatted(a, b, result));
         return result;
     }
 
     @Override
     public double multiply(double a, double b) {
         var result = a * b;
-        IO.println("%f * %f = %f".formatted(a, b, result));
+        IO.println("%.2f * %.2f = %.2f".formatted(a, b, result));
         return result;
     }
 
@@ -32,7 +32,7 @@ class StandardArithmeticCalculator implements ArithmeticCalculator {
         }
 
         var result = a / b;
-        IO.println("%f / %f = %f".formatted(a, b, result));
+        IO.println("%.2f / %.2f = %.2f".formatted(a, b, result));
         return result;
     }
 }
