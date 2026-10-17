@@ -18,6 +18,12 @@ public class CalculatorLoggingAspect {
     @Before("execution(* com.rozplochowski.aspectorientedprogramming.service.*.*(..))")
     public void logBefore(JoinPoint joinPoint) {
         var name = joinPoint.getSignature().getName();
+
+        log.info("This object (proxy) is {}", joinPoint.getThis());
+        log.info("Target object (original) is {}", joinPoint.getTarget());
+        log.info("Join point's kind is {}", joinPoint.getKind());
+        log.info("Signature declaring type is {}", joinPoint.getSignature().getDeclaringType());
+
         var args = Arrays.toString(joinPoint.getArgs());
         log.info("The method {} begins with arguments {}", name, args);
     }
