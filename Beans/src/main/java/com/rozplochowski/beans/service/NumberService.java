@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class NumberService {
 
     private final List<Number> numbers; // 42 & 21.0 as defined in config.NumbersConfig
@@ -24,19 +25,8 @@ public class NumberService {
     // meaningOfLife due to @Primary annotation
     private final Number mostImportantNumber;
 
+    @Qualifier("luckyNumber")
     private final Number luckyNumber;
-
-    public NumberService(List<Number> numbers,
-                         Map<String, Number> numbersByName,
-                         ObjectProvider<Short> shortObjectProvider,
-                         Number mostImportantNumber,
-                         @Qualifier("luckyNumber") Number luckyNumber) {
-        this.numbers = numbers;
-        this.numbersByName = numbersByName;
-        this.shortObjectProvider = shortObjectProvider;
-        this.mostImportantNumber = mostImportantNumber;
-        this.luckyNumber = luckyNumber;
-    }
 
     @PostConstruct
     public void init() {
