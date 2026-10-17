@@ -31,6 +31,15 @@ public class BeansApplication {
              numberService.printNumbersIndex();
 
              ctx.getBean(StringService.class).introduce();
+
+             var randomNumber = ctx.getBean(Long.class);
+             var randomNumber2 = ctx.getBean(Long.class);
+             var randomNumber3 = ctx.getBean(Long.class);
+
+             IO.println("Prototype Beans: %d, %d, %d ".formatted(
+                     randomNumber, randomNumber2, randomNumber3
+             ));
+
          }
     }
 

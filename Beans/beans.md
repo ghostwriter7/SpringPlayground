@@ -33,3 +33,13 @@
 * `@Autowired(required = false)`
 * `Optional<Bean>` - makes the injection lazy
 * `ObjectProvider`
+
+## Scope
+
+* `@Scope`
+* singleton - default
+* prototype - new instance every time it is requested
+* request - per HTTP request; only for web apps
+* session - per HTTP session; only for web apps
+* websocket - per WebSocket session
+* application - similar to singleton, registered in `ServletContext`
