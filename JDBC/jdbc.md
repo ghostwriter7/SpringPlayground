@@ -1,5 +1,10 @@
 # Java Database Connectivity (JDBC)
 
+## Interactions
+
+* `JdbcTemplate`
+* `NamedParameterJdbcTemplate`
+
 ## `PreparedStatementCreator`
 
 * given `Connection`, create `PreparedStatement` and bind parameters

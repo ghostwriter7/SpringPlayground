@@ -6,8 +6,8 @@ drop table if exists training_log;
 create table training_log
 (
     id           bigint auto_increment primary key,
-    performed_at date not null,
-    finished_at  date null
+    performed_at timestamp not null,
+    finished_at  timestamp null
 );
 
 create table exercise

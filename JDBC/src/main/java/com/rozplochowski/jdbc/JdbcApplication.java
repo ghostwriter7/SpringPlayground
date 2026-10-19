@@ -1,16 +1,18 @@
 package com.rozplochowski.jdbc;
 
 import com.rozplochowski.jdbc.model.Exercise;
+import com.rozplochowski.jdbc.model.TrainingLog;
 import com.rozplochowski.jdbc.repository.ExerciseDao;
+import com.rozplochowski.jdbc.repository.TrainingLogDao;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @SpringBootApplication
@@ -20,6 +22,7 @@ public class JdbcApplication implements CommandLineRunner {
     private final Logger logger = LoggerFactory.getLogger(JdbcApplication.class);
 
     private final ExerciseDao exerciseDao;
+    private final TrainingLogDao trainingLogDao;
 
     static void main(String[] args) {
         SpringApplication.run(JdbcApplication.class, args);
@@ -56,5 +59,14 @@ public class JdbcApplication implements CommandLineRunner {
         logger.info("Exercises: {}", exerciseDao.findAll());
 
         logger.info("Exercises count is {}", exerciseDao.countAll());
+
+        var trainingLog = new TrainingLog();
+        trainingLog.setPerformedAt(Instant.now());
+        trainingLog.setFinishedAt(Instant.now().plus(30, ChronoUnit.MINUTES));
+        trainingLog = trainingLogDao.save(trainingLog);
+
+        logger.info("Training log: {}", trainingLog);
+
+        logger.info("Training log {}: {}", trainingLog.getId(), trainingLogDao.findById(trainingLog.getId()));
     }
 }
