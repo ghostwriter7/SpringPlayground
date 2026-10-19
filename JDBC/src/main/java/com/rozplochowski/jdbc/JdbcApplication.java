@@ -3,6 +3,7 @@ package com.rozplochowski.jdbc;
 import com.rozplochowski.jdbc.model.Exercise;
 import com.rozplochowski.jdbc.model.TrainingLog;
 import com.rozplochowski.jdbc.repository.ExerciseDao;
+import com.rozplochowski.jdbc.repository.IsolationLevelDemoRepository;
 import com.rozplochowski.jdbc.repository.TrainingLogDao;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ public class JdbcApplication implements CommandLineRunner {
 
     private final ExerciseDao exerciseDao;
     private final TrainingLogDao trainingLogDao;
+    private final IsolationLevelDemoRepository isolationLevelDemoRepository;
 
     static void main(String[] args) {
         SpringApplication.run(JdbcApplication.class, args);
@@ -81,5 +83,8 @@ public class JdbcApplication implements CommandLineRunner {
         logger.info("Training log {}: {}", trainingLog.getId(), trainingLogDao.findById(trainingLog.getId()));
 
         trainingLogDao.delete(trainingLog);
+
+//        isolationLevelDemoRepository.readUncommitted();
+        isolationLevelDemoRepository.readCommitted();
     }
 }
