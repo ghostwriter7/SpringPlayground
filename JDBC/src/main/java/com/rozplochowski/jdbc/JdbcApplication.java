@@ -33,9 +33,10 @@ public class JdbcApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<Exercise> exercises = exerciseDao.findAll();
+        exerciseDao.txDemo();
+        exerciseDao.txDemoWithTemplate();
 
-        logger.info("Existing Exercises: {}", exercises);
+        logger.info("Existing Exercises: {}", exerciseDao.findAll());
 
         var running = exerciseDao.save(new Exercise("Running"));
 

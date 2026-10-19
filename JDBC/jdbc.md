@@ -44,3 +44,10 @@
 | Resource         | Connection   | Session            | EntityManager        |
 | Resource Factory | DataSource   | SessionFactory     | EntityManagerFactory |
 | Exception        | SQLException | HibernateException | PersistenceException |
+
+## Transactions
+
+Programmatic
+* `PlatformTransactionManager`
+* define transaction definition to set isolation level, propagation behaviour, timeout, read-only flag, and rollback rules
+* `TransactionTemplate` - encapsulates common logic (start, rollback, commit)

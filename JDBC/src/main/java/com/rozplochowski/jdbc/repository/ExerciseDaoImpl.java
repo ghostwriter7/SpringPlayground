@@ -9,6 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.sql.*;
 import java.util.List;
@@ -17,13 +20,47 @@ import java.util.List;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class ExerciseDaoImpl implements ExerciseDao {
     private final JdbcTemplate jdbcTemplate;
-//    private final RowMapper<Exercise> exerciseRowMapper = (ResultSet rs, int rowNum) -> {
+    private final PlatformTransactionManager transactionManager;
+    private final TransactionTemplate transactionTemplate;
+
+    //    private final RowMapper<Exercise> exerciseRowMapper = (ResultSet rs, int rowNum) -> {
 //        var name = rs.getString("name");
 //        var id = rs.getLong("id");
 //        return new Exercise(name, id);
 //    };
     private final RowMapper<Exercise> exerciseRowMapper = BeanPropertyRowMapper.newInstance(Exercise.class);
 
+    @Override
+    public void txDemo() {
+        var def = new DefaultTransactionDefinition();
+        var status = transactionManager.getTransaction(def);
+        try {
+            var keyHolder = new GeneratedKeyHolder();
+            jdbcTemplate.update(pps -> {
+                var ps = pps.prepareStatement("insert into exercise (name) values (?)", Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, "test");
+                return ps;
+            }, keyHolder);
+            var id = keyHolder.getKey().longValue();
+            jdbcTemplate.update("update exercise set name = ? where id = ?", "test2", id);
+
+            var exercise = jdbcTemplate.queryForObject("select id, name from exercise where id = ?", exerciseRowMapper, id);
+
+            transactionManager.commit(status);
+        } catch (RuntimeException ex) {
+            transactionManager.rollback(status);
+            throw ex;
+        }
+    }
+
+    @Override
+    public void txDemoWithTemplate() {
+        var result = transactionTemplate.execute(action -> {
+            jdbcTemplate.update("insert into exercise (name) values (?)", "Swimming");
+            return jdbcTemplate.queryForObject("select id from exercise where name = ?", Long.class, "Swimming");
+        });
+        IO.println("txDemoWithTemplate result: %s".formatted(result));
+    }
 
     @Override
     public int countAll() {

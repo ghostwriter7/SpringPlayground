@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface ExerciseDao {
 
+    void txDemo();
+    void txDemoWithTemplate();
+
     List<Exercise> findAll();
 
     Exercise findById(Long id);

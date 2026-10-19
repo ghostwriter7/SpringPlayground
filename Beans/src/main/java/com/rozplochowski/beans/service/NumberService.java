@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 @Lazy
 @Service
+@Slf4j
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class NumberService {
 
@@ -33,10 +35,10 @@ public class NumberService {
 
     @PostConstruct
     public void init() {
-        IO.println("ObjectProvider for Short provided: " + shortObjectProvider.getIfUnique());
+        log.info("ObjectProvider for Short provided: {}", shortObjectProvider.getIfUnique());
 
-        IO.println("Most important number: " + mostImportantNumber);
-        IO.println("Lucky number: " + luckyNumber);
+        log.info("Most important number: {}", mostImportantNumber);
+        log.info("Lucky number: {}", luckyNumber);
     }
 
     // There is no Float bean, but it is optional, no errors
@@ -51,15 +53,15 @@ public class NumberService {
     }
 
     public void printNumbers() {
-        IO.println(numbers);
+        log.info(numbers.toString());
     }
 
     public void printNumbersIndex() {
-        IO.println(numbersByName);
+        log.info(numbersByName.toString());
     }
 
     @PreDestroy
     public void destroy() {
-        IO.println("NumberService destroyed");
+        log.info("NumberService destroyed");
     }
 }

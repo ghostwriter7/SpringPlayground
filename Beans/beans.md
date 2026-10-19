@@ -68,6 +68,7 @@ To access programmatically, check:
 * `@Bean(destroyMethod = "destroy", initMethod = "init")`
 * `@Lazy` - to delay bean initialization until it is requested
 * `@DependsOn` - to control bean initialization order
+* impl `Lifecycle` or `SmartLifecycle`
 
 ## Processing
 
