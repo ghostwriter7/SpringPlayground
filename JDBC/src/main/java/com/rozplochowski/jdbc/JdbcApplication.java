@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.dao.DataAccessException;
 
+import java.sql.SQLException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -36,6 +38,14 @@ public class JdbcApplication implements CommandLineRunner {
         logger.info("Existing Exercises: {}", exercises);
 
         var running = exerciseDao.save(new Exercise("Running"));
+
+        try {
+            exerciseDao.save(new Exercise("Running"));
+        } catch (DataAccessException ex) {
+            var cause = (SQLException) ex.getCause();
+            logger.error("Error code {}", cause.getErrorCode());
+            logger.error("SQL state {}", cause.getSQLState());
+        }
 
         logger.info("Saved Exercise: {}", running);
 

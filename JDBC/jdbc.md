@@ -33,3 +33,6 @@
 ## Exception Handling
 
 * `DataAccessException`
+* cause is `SQLException`
+* inspect error code and SQL state
+* mapping of error codes to exceptions can be customized via a config file or by implementing `SQLExceptionTranslator`
