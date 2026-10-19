@@ -8,4 +8,6 @@ public interface TrainingLogDao {
 
     TrainingLog findById(Long id);
 
+    void delete(TrainingLog trainingLog);
+
 }

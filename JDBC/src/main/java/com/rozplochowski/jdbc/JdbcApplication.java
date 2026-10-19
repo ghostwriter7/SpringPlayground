@@ -68,5 +68,7 @@ public class JdbcApplication implements CommandLineRunner {
         logger.info("Training log: {}", trainingLog);
 
         logger.info("Training log {}: {}", trainingLog.getId(), trainingLogDao.findById(trainingLog.getId()));
+
+        trainingLogDao.delete(trainingLog);
     }
 }

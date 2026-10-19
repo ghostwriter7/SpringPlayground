@@ -3,13 +3,13 @@ package com.rozplochowski.jdbc.repository;
 import com.rozplochowski.jdbc.model.TrainingLog;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.Map;
 
 @Repository
@@ -41,5 +41,11 @@ class TrainingLogDaoImpl implements TrainingLogDao {
                                 rs.getTimestamp("performed_at").toInstant(),
                                 rs.getTimestamp("finished_at").toInstant()
                         ));
+    }
+
+    @Override
+    public void delete(TrainingLog trainingLog) {
+        var source = new BeanPropertySqlParameterSource(trainingLog);
+        jdbcTemplate.update("delete from training_log where id = :id", source);
     }
 }
