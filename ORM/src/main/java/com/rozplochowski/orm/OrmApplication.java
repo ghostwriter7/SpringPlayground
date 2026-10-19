@@ -1,7 +1,9 @@
 package com.rozplochowski.orm;
 
 import com.rozplochowski.orm.domain.Course;
+import com.rozplochowski.orm.domain.Log;
 import com.rozplochowski.orm.repository.CourseDao;
+import com.rozplochowski.orm.repository.LogDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class OrmApplication implements CommandLineRunner {
     private final CourseDao courseDao;
+    private final LogDao logDao;
 
     static void main(String[] args) {
         SpringApplication.run(OrmApplication.class, args);
@@ -44,5 +47,11 @@ public class OrmApplication implements CommandLineRunner {
         courseDao.delete(newCourse.getId());
 
         log.info("Courses: {}", courseDao.findAll());
+
+        var newLog = new Log();
+        newLog.setMessage("Hello");
+        logDao.save(newLog);
+
+        log.info("Logs: {}", logDao.findAll());
     }
 }

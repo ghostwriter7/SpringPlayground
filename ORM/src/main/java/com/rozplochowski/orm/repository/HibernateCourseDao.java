@@ -36,6 +36,18 @@ class HibernateCourseDao implements CourseDao {
         }
     }
 
+
+//    @Override
+//    @Transactional
+//    public Course store(Course course) {
+//        var session = sessionFactory.getCurrentSession();
+//        if (course.getId() == null)
+//            session.persist(course);
+//        else
+//            session.merge(course);
+//        return course;
+//    }
+
     @Override
     public Course findById(Long id) {
         try (var session = sessionFactory.openSession()) {
