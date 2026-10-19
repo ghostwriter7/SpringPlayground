@@ -12,9 +12,13 @@
             <option value="$PROJECT_DIR$/AspectOrientedProgramming" />
             <option value="$PROJECT_DIR$/Beans" />
             <option value="$PROJECT_DIR$/JDBC" />
+            <option value="$PROJECT_DIR$/Messaging" />
             <option value="$PROJECT_DIR$/ORM" />
           </set>
         </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Messaging" />
       </GradleProjectSettings>
     </option>
   </component>
