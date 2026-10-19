@@ -13,13 +13,13 @@
 
 * only binds parameters
 
-## `BatchPreparedStatementSetter` 
+## `BatchPreparedStatementSetter`
 
 * binds parameters for multiple `PreparedStatement`s
 
 ## `GeneratedKeyHolder`
 
-* holds generated keys from `batchUpdate` or simple inserts 
+* holds generated keys from `batchUpdate` or simple inserts
 
 ## `BeanPropertyRowMapper`
 
@@ -36,3 +36,11 @@
 * cause is `SQLException`
 * inspect error code and SQL state
 * mapping of error codes to exceptions can be customized via a config file or by implementing `SQLExceptionTranslator`
+
+## Comparison of concepts between JDBC, Hibernate and JPA
+
+| Concept          | JDBC         | Hibernate          | JPA                  |
+|------------------|--------------|--------------------|----------------------|
+| Resource         | Connection   | Session            | EntityManager        |
+| Resource Factory | DataSource   | SessionFactory     | EntityManagerFactory |
+| Exception        | SQLException | HibernateException | PersistenceException |
