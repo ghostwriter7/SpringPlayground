@@ -6,18 +6,25 @@ import com.rozplochowski.orm.repository.CourseDao;
 import com.rozplochowski.orm.repository.LogDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 import java.time.LocalDate;
 
 @Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
+@ConfigurationPropertiesScan("com.rozplochowski.orm.props")
 public class OrmApplication implements CommandLineRunner {
     private final CourseDao courseDao;
     private final LogDao logDao;
+
+    @Value("${custom.property-test}")
+    private final String test;
+
 
     static void main(String[] args) {
         SpringApplication.run(OrmApplication.class, args);

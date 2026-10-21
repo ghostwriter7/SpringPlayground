@@ -1,3 +1,12 @@
 spring:
   application:
     name: ORM
+
+custom:
+  list:
+    - value1
+    - value2
+    - value3
+  property-value: value4
+  property-value2: value5
+  property-value3: value6
