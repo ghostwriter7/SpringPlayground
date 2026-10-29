@@ -7,4 +7,4 @@ spring:
       - localhost:9093
       - localhost:9094
 app:
-  create-producer: true
+  create-producer: false
